@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package recommendations;
+
+service RecommendationService {
+  rpc GetRecommendations (RecommendationRequest) returns (RecommendationResponse);
+}
+
+message RecommendationRequest {
+  string product_id = 1;
+  map<string, string> user_preferences = 2;
+}
+
+message Recommendation {
+  string product_id = 1;
+  string product_name = 2;
+  float relevance_score = 3;
+  string product_json = 4;
+}
+
+message RecommendationResponse {
+  repeated Recommendation recommendations = 1;
+}
+
