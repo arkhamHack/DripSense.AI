@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from app.agents.langchain_agent import agent
 
 router = APIRouter()
-
+agent = UserMessageProcessor(llm_model="models/gemini-1.5-flash")
 
 @router.post("/more-like-this")
 async def get_recommendations(product_id: str):

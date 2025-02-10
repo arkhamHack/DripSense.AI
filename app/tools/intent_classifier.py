@@ -1,10 +1,12 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from typing import Optional
 from app.prompts import intent_prompt
+from app.clients import LLMClient
 
 class IntentTool:
-    def __init__(self, llm_model):
-        self.llm = llm_model
+    def __init__(self):
+        self.llm  = LLMClient.get_instance()
+
 
     def classify_intent(self,message: str) -> str:
         """

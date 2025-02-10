@@ -1,13 +1,11 @@
 from typing import Dict, Any
-from app.tools.query_tool import QueryTool
-from app.tools.intent_tool import IntentTool
-from app.tools.memory_tool import MemoryTool
+from app.tools import IntentTool, MemoryTool,QueryGeneratorTool
 
 
 class UserMessageProcessor:
-    def __init__(self, llm_model, grpc_server_address: str = "localhost:50051"):
-        self.intent_tool = IntentTool(llm_model)
-        self.query_tool = QueryTool(grpc_server_address)
+    def __init__(self, grpc_server_address: str = "localhost:50051"):
+        self.intent_tool = IntentTool()
+        self.query_tool = QueryGeneratorTool(grpc_server_address)
         self.memory_tool = MemoryTool()
 
     async def process(self, user_message: str, metadata: Dict[str, Any]) -> str:
